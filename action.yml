@@ -20,7 +20,7 @@ runs:
     - name: Restore tool cache
       if: inputs.skip-cache != 'true'
       id: cache
-      uses: actions/cache@v4
+      uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
       with:
         path: ${{ runner.tool_cache }}/skopeo
         key: skopeo-${{ runner.os }}-${{ runner.arch }}-${{ steps.latest.outputs.release || inputs.version }}
@@ -51,7 +51,7 @@ runs:
     # public key from https://docs.aws.amazon.com/cli/latest/userguide/getting-started-version.html
     # https://github.com/crazy-max/ghaction-import-gpg
     - name: Import GPG key
-      uses: crazy-max/ghaction-import-gpg@v6.1.0
+      uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4 # v6.1.0
       env:
         GPG_PRIVATE_KEY: >
           -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -102,7 +102,7 @@ runs:
         find .
 
     - name: Update tool cache
-      uses: AnimMouse/tool-cache@v1
+      uses: AnimMouse/tool-cache@5c73a08045bdef61c81a6c60d208cff7ab36f3aa # v1
       with:
         folder_name: skopeo
         cache_hit: ${{ steps.cache.outputs.cache-hit }}
