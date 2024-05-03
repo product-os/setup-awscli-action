@@ -5,6 +5,15 @@ runs:
   steps:
     - name: Test setup of AWS CLI
       uses: ./
+      with:
+        skip-cache: 'true'
+    - name: Print AWS CLI version
+      shell: bash
+      run: aws --version
+    - name: Test setup of AWS CLI
+      uses: ./
+      with:
+        skip-cache: 'false'
     - name: Print AWS CLI version
       shell: bash
       run: aws --version
