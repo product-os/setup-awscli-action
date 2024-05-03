@@ -1,0 +1,113 @@
+name: "Setup AWS CLI Action"
+description: "Setup AWS CLI version 2 in a GitHub Actions workflow"
+branding:
+  icon: "code"
+  color: "blue"
+inputs:
+  version:
+    description: "AWS CLI release to install (see https://raw.githubusercontent.com/aws/aws-cli/v2/CHANGELOG.rst)"
+    required: false
+    default: '2.15.43'
+  skip-cache:
+    description: "Skip using the tool cache and always re-download"
+    required: false
+    default: 'false'
+
+# Builds and then runs as separate steps as default GitHub method does not allow passing build args
+runs:
+  using: "composite"
+  steps:
+    - name: Restore tool cache
+      if: inputs.skip-cache != 'true'
+      id: cache
+      uses: actions/cache@v4
+      with:
+        path: ${{ runner.tool_cache }}/skopeo
+        key: skopeo-${{ runner.os }}-${{ runner.arch }}-${{ steps.latest.outputs.release || inputs.version }}
+
+    - name: Get runner os
+      if: steps.cache.outputs.cache-hit != true
+      id: os
+      shell: bash
+      working-directory: ${{ runner.temp }}
+      run: |
+        case "${{ runner.os }}" in
+          Linux) echo "Detected runner os: ${{ runner.os }}" ;;
+          *) echo "::error::Unsupported os: ${{ runner.os }}" ; exit 1 ;;
+        esac
+
+    - name: Get runner arch
+      if: steps.cache.outputs.cache-hit != true
+      id: arch
+      shell: bash
+      working-directory: ${{ runner.temp }}
+      run: |
+        case "${{ runner.arch }}" in
+          X64) echo "target=x86_64" >> "${GITHUB_OUTPUT}" ;;
+          ARM64) echo "target=aarch64" >> "${GITHUB_OUTPUT}" ;;
+          *) echo "::error::Unsupported arch: ${{ runner.arch }}" ; exit 1 ;;
+        esac
+
+    # public key from https://docs.aws.amazon.com/cli/latest/userguide/getting-started-version.html
+    # https://github.com/crazy-max/ghaction-import-gpg
+    - name: Import GPG key
+      uses: crazy-max/ghaction-import-gpg@v6.1.0
+      env:
+        GPG_PRIVATE_KEY: >
+          -----BEGIN PGP PUBLIC KEY BLOCK-----
+
+          mQINBF2Cr7UBEADJZHcgusOJl7ENSyumXh85z0TRV0xJorM2B/JL0kHOyigQluUG
+          ZMLhENaG0bYatdrKP+3H91lvK050pXwnO/R7fB/FSTouki4ciIx5OuLlnJZIxSzx
+          PqGl0mkxImLNbGWoi6Lto0LYxqHN2iQtzlwTVmq9733zd3XfcXrZ3+LblHAgEt5G
+          TfNxEKJ8soPLyWmwDH6HWCnjZ/aIQRBTIQ05uVeEoYxSh6wOai7ss/KveoSNBbYz
+          gbdzoqI2Y8cgH2nbfgp3DSasaLZEdCSsIsK1u05CinE7k2qZ7KgKAUIcT/cR/grk
+          C6VwsnDU0OUCideXcQ8WeHutqvgZH1JgKDbznoIzeQHJD238GEu+eKhRHcz8/jeG
+          94zkcgJOz3KbZGYMiTh277Fvj9zzvZsbMBCedV1BTg3TqgvdX4bdkhf5cH+7NtWO
+          lrFj6UwAsGukBTAOxC0l/dnSmZhJ7Z1KmEWilro/gOrjtOxqRQutlIqG22TaqoPG
+          fYVN+en3Zwbt97kcgZDwqbuykNt64oZWc4XKCa3mprEGC3IbJTBFqglXmZ7l9ywG
+          EEUJYOlb2XrSuPWml39beWdKM8kzr1OjnlOm6+lpTRCBfo0wa9F8YZRhHPAkwKkX
+          XDeOGpWRj4ohOx0d2GWkyV5xyN14p2tQOCdOODmz80yUTgRpPVQUtOEhXQARAQAB
+          tCFBV1MgQ0xJIFRlYW0gPGF3cy1jbGlAYW1hem9uLmNvbT6JAlQEEwEIAD4CGwMF
+          CwkIBwIGFQoJCAsCBBYCAwECHgECF4AWIQT7Xbd/1cEYuAURraimMQrMRnJHXAUC
+          ZMKcEgUJCSEf3QAKCRCmMQrMRnJHXCilD/4vior9J5tB+icri5WbDudS3ak/ve4q
+          XS6ZLm5S8l+CBxy5aLQUlyFhuaaEHDC11fG78OduxatzeHENASYVo3mmKNwrCBza
+          NJaeaWKLGQT0MKwBSP5aa3dva8P/4oUP9GsQn0uWoXwNDWfrMbNI8gn+jC/3MigW
+          vD3fu6zCOWWLITNv2SJoQlwILmb/uGfha68o4iTBOvcftVRuao6DyqF+CrHX/0j0
+          klEDQFMY9M4tsYT7X8NWfI8Vmc89nzpvL9fwda44WwpKIw1FBZP8S0sgDx2xDsxv
+          L8kM2GtOiH0cHqFO+V7xtTKZyloliDbJKhu80Kc+YC/TmozD8oeGU2rEFXfLegwS
+          zT9N+jB38+dqaP9pRDsi45iGqyA8yavVBabpL0IQ9jU6eIV+kmcjIjcun/Uo8SjJ
+          0xQAsm41rxPaKV6vJUn10wVNuhSkKk8mzNOlSZwu7Hua6rdcCaGeB8uJ44AP3QzW
+          BNnrjtoN6AlN0D2wFmfE/YL/rHPxU1XwPntubYB/t3rXFL7ENQOOQH0KVXgRCley
+          sHMglg46c+nQLRzVTshjDjmtzvh9rcV9RKRoPetEggzCoD89veDA9jPR2Kw6RYkS
+          XzYm2fEv16/HRNYt7hJzneFqRIjHW5qAgSs/bcaRWpAU/QQzzJPVKCQNr4y0weyg
+          B8HCtGjfod0p1A==
+          =gdMc
+          -----END PGP PUBLIC KEY BLOCK-----
+      with:
+        gpg_private_key: ${{ env.GPG_PRIVATE_KEY }}
+
+    - name: Install AWS CLI (Linux)
+      if: steps.cache.outputs.cache-hit != true && runner.os == 'Linux'
+      working-directory: ${{ runner.temp }}
+      shell: bash --noprofile --norc -eo pipefail -x {0}
+      env:
+        DOWNLOAD_URL: https://awscli.amazonaws.com/awscli-exe-linux-${{ steps.arch.outputs.target }}-${{ inputs.version }}.zip
+      run: |
+        mkdir -p awscliv2
+        cd awscliv2
+        curl -fsSL "${DOWNLOAD_URL}" -o awscliv2.zip
+        curl -fsSL "${DOWNLOAD_URL}.sig" -o awscliv2.sig
+        gpg --verify awscliv2.sig awscliv2.zip
+        unzip awscliv2.zip
+        find .
+
+    - name: Update tool cache
+      uses: AnimMouse/tool-cache@v1
+      with:
+        folder_name: skopeo
+        cache_hit: ${{ steps.cache.outputs.cache-hit }}
+
+    - name: Print AWS CLI version
+      shell: bash
+      working-directory: ${{ runner.temp }}
+      run: aws --version

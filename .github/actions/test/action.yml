@@ -1,0 +1,10 @@
+name: "Test setup of AWS CLI"
+description: "Test setup of AWS CLI composite action"
+runs:
+  using: "composite"
+  steps:
+    - name: Test setup of AWS CLI
+      uses: ./
+    - name: Print AWS CLI version
+      shell: bash
+      run: aws --version
