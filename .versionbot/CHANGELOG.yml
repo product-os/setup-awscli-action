@@ -1,4 +1,15 @@
 - commits:
+    - subject: Switch self-hosted
+      hash: 14a34443074962ec450c299e78bd9109031bf3a1
+      body: ""
+      footer:
+        change-type: patch
+      author: Anton Belodedenko
+      nested: []
+  version: 0.0.4
+  title: ""
+  date: 2024-07-23T17:28:46.263Z
+- commits:
     - subject: Add support for macOS
       hash: 9525fb1cec1bba09b1501bfaa36aa66fe5ee4536
       body: ""
