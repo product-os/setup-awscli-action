@@ -1,4 +1,17 @@
 - commits:
+    - subject: Update actions/cache digest to 2cdf405
+      hash: 5226fa9a694cf3a1ce8c6c92b0ad7178448905b3
+      body: |
+        Update actions/cache
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Self-hosted Renovate Bot
+      nested: []
+  version: 0.0.5
+  title: ""
+  date: 2024-10-07T17:06:39.077Z
+- commits:
     - subject: Switch self-hosted
       hash: 14a34443074962ec450c299e78bd9109031bf3a1
       body: ""
