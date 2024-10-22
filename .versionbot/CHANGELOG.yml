@@ -1,4 +1,17 @@
 - commits:
+    - subject: Update actions/cache digest to 6849a64
+      hash: a47590d360d3df858a0266bed56fa74892067255
+      body: |
+        Update actions/cache
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Self-hosted Renovate Bot
+      nested: []
+  version: 0.0.7
+  title: ""
+  date: 2024-10-22T15:04:56.774Z
+- commits:
     - subject: Update actions/cache digest to 3624ceb
       hash: 6ca38735b3e47edc649f9807422af6a4be07941c
       body: |
