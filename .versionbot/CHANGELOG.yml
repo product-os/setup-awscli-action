@@ -1,4 +1,17 @@
 - commits:
+    - subject: Update crazy-max/ghaction-import-gpg action to v6.2.0
+      hash: 4606375d7216231355a3bfa40636e3ff733d7552
+      body: |
+        Update crazy-max/ghaction-import-gpg from 6.1.0 to 6.2.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Self-hosted Renovate Bot
+      nested: []
+  version: 0.0.8
+  title: ""
+  date: 2024-10-26T20:04:01.654Z
+- commits:
     - subject: Update actions/cache digest to 6849a64
       hash: a47590d360d3df858a0266bed56fa74892067255
       body: |
