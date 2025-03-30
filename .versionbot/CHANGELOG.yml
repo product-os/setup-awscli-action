@@ -1,4 +1,17 @@
 - commits:
+    - subject: Update crazy-max/ghaction-import-gpg action to v6.3.0
+      hash: 802efb83744a74ad910edb9446e4ec9dee3563e6
+      body: |
+        Update crazy-max/ghaction-import-gpg from 6.2.0 to 6.3.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+      nested: []
+  version: 0.0.13
+  title: ""
+  date: 2025-03-30T00:04:06.800Z
+- commits:
     - subject: Update actions/cache digest to 5a3ec84
       hash: 79e59486d376c3ddd67dc7908b5ad122387a91f4
       body: |
