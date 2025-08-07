@@ -1,4 +1,17 @@
 - commits:
+    - subject: Update actions/cache digest to 0400d5f
+      hash: 7afca0cb072fbc222bf56992cf64287dd21c4189
+      body: |
+        Update actions/cache
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+      nested: []
+  version: 0.0.14
+  title: ""
+  date: 2025-08-07T13:25:21.022Z
+- commits:
     - subject: Update crazy-max/ghaction-import-gpg action to v6.3.0
       hash: 802efb83744a74ad910edb9446e4ec9dee3563e6
       body: |
