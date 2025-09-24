@@ -1,4 +1,17 @@
 - commits:
+    - subject: Update actions/cache digest to 0057852
+      hash: 9721c1db7d2aaae7bc9ceeb206c75a63dfa941e7
+      body: |
+        Update actions/cache
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+      nested: []
+  version: 0.0.15
+  title: ""
+  date: 2025-09-24T14:15:56.972Z
+- commits:
     - subject: Update actions/cache digest to 0400d5f
       hash: 7afca0cb072fbc222bf56992cf64287dd21c4189
       body: |
