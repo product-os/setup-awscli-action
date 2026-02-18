@@ -123,7 +123,7 @@ runs:
 
     # https://github.com/AnimMouse/tool-cache
     - name: Update tool cache
-      uses: AnimMouse/tool-cache@5c73a08045bdef61c81a6c60d208cff7ab36f3aa # v1
+      uses: AnimMouse/tool-cache@c58dc704bd326aa5d6f995afe80ac0486ec59c5e # v1
       with:
         folder_name: ${{ steps.tempdir.outputs.basename }}/awscliv2
         cache_hit: ${{ steps.cache.outputs.cache-hit }}
