@@ -1,4 +1,17 @@
 - commits:
+    - subject: Update AnimMouse/tool-cache digest to c58dc70
+      hash: c2491a0a1687b8ac260fe78959336bda90c90629
+      body: |
+        Update AnimMouse/tool-cache
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+      nested: []
+  version: 0.0.16
+  title: ""
+  date: 2026-02-18T20:46:43.782Z
+- commits:
     - subject: Update actions/cache digest to 0057852
       hash: 9721c1db7d2aaae7bc9ceeb206c75a63dfa941e7
       body: |
