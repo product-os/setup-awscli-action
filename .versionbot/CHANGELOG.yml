@@ -1,4 +1,17 @@
 - commits:
+    - subject: Update actions/cache action to v5
+      hash: d09038f702825e97d415b4204ad5522d345f18eb
+      body: |
+        Update actions/cache from 4 to 5
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+      nested: []
+  version: 0.0.34
+  title: ""
+  date: 2026-03-27T14:03:12.165Z
+- commits:
     - subject: Revert flowzone pinning to master
       hash: 616086ef648c9eb9f7c3cd4a6372f935f378efbc
       body: ""
