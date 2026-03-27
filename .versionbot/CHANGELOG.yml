@@ -1,4 +1,17 @@
 - commits:
+    - subject: Update crazy-max/ghaction-import-gpg action to v7
+      hash: 70b97e930ab3125b7709755dbcd2584ebf6e1315
+      body: |
+        Update crazy-max/ghaction-import-gpg from 6.3.0 to 7.0.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+      nested: []
+  version: 0.0.32
+  title: ""
+  date: 2026-03-27T12:59:56.875Z
+- commits:
     - subject: Update product-os/flowzone digest to 8ea01d3
       hash: 66b8cff3ea72c80f92695bdfa997342869b34656
       body: |
