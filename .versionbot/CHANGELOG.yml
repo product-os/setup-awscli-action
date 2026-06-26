@@ -1,4 +1,17 @@
 - commits:
+    - subject: Update actions/cache digest to caa2961
+      hash: 6e4f394a22cb9f4d92bfbc83a90a8e86e859ceb3
+      body: |
+        Update actions/cache
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+      nested: []
+  version: 0.0.36
+  title: ""
+  date: 2026-06-26T21:13:33.193Z
+- commits:
     - subject: Update actions/cache digest to 27d5ce7
       hash: 9903c3fc10f0d01c151378004081fe021c343999
       body: |
